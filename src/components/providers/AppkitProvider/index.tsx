@@ -1,7 +1,13 @@
 import { createAppKit } from "@reown/appkit/react";
-
 import { WagmiProvider } from "wagmi";
-import { arbitrum, mainnet } from "@reown/appkit/networks";
+import {
+  mainnet,
+  base,
+  bsc,
+  polygon,
+  solana,
+  AppKitNetwork,
+} from "@reown/appkit/networks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 
@@ -20,7 +26,13 @@ const metadata = {
 };
 
 // 3. Set the networks
-const networks = [mainnet, arbitrum];
+const networks: [AppKitNetwork, ...AppKitNetwork[]] = [
+  mainnet,
+  base,
+  bsc,
+  polygon,
+  solana,
+];
 
 // 4. Create Wagmi Adapter
 const wagmiAdapter = new WagmiAdapter({
@@ -32,15 +44,20 @@ const wagmiAdapter = new WagmiAdapter({
 // 5. Create modal
 createAppKit({
   adapters: [wagmiAdapter],
-  networks,
+  networks: networks,
   projectId,
   metadata,
   features: {
     analytics: true, // Optional - defaults to your Cloud configuration
+    socials: false,
+    email: false,
+    send: false,
+    receive: false,
+    swaps: false,
   },
 });
 
-export function AppKitProvider({ children }) {
+export function AppKitProvider({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
