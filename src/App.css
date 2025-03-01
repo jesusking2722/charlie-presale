@@ -1,0 +1,26 @@
+.bg-gradient {
+  background: linear-gradient(to right, #ce89ca, #5885bf, #7258df, #75eea3);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #ce89ca, #5885bf, #7258df, #75eea3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #212121;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444444;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
